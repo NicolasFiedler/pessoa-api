@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EnderecoService {
@@ -25,7 +26,7 @@ public class EnderecoService {
     public List<EnderecoDTO> list() {
         return enderecoRepository.list().stream()
                 .map(endereco -> objectMapper.convertValue(endereco, EnderecoDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public EnderecoDTO getById(Integer id) throws Exception {
@@ -39,7 +40,7 @@ public class EnderecoService {
         return list().stream()
                 .filter(e -> e.getIdPessoa().equals(id))
                 .map(e -> objectMapper.convertValue(e, EnderecoDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public EnderecoDTO create(Integer id, EnderecoCreateDTO endereco) throws Exception {

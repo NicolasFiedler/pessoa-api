@@ -30,7 +30,7 @@ public class ContatoService {
     public List<ContatoDTO> list() {
         return contatoRepository.list().stream()
                 .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public ContatoDTO update (Integer id, ContatoCreateDTO contato) throws Exception {
@@ -44,7 +44,7 @@ public class ContatoService {
     public List<ContatoDTO> listByPessoaId(Integer id) {
         return contatoRepository.listByPessoaId(id).stream()
                 .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
 }

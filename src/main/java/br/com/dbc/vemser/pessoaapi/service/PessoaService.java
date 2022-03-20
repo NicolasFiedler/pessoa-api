@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PessoaService {
@@ -40,7 +41,7 @@ public class PessoaService {
     public List<PessoaDTO> list(){
         return pessoaRepository.list().stream()
                 .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public PessoaDTO update(Integer id, PessoaCreateDTO pessoaAtualizar) throws Exception {
@@ -55,7 +56,7 @@ public class PessoaService {
     public List<PessoaDTO> listByName(String nome) {
         return pessoaRepository.listByName(nome).stream()
                 .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public PessoaDTO getPessoaById (Integer id) throws Exception {
